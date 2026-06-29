@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Кира Эльдаровна — Репетитор английского языка, Актобе</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── TOKENS ─────────────────────────────────────────────── */
+    :root {
+      --blue:        #2563EB;
+      --blue-dark:   #1D4ED8;
+      --amber:       #F59E0B;
+      --amber-dark:  #D97706;
+      --bg:          #F8FAFC;
+      --card:        #FFFFFF;
+      --ink:         #0F172A;
+      --muted:       #64748B;
+      --sage:        #6B8F71;
+      --sage-bg:     #F0F5EB;
+      --sage-light:  #A7C4AB;
+      --cream:       #FEFAEF;
+      --dark-bg:     #1A2332;
+      --dark-text:   #EDE8DC;
+      --radius-sm:   8px;
+      --radius-md:   14px;
+      --radius-lg:   22px;
+      --shadow-sm:   0 1px 4px rgba(15,23,42,.06), 0 2px 8px rgba(15,23,42,.04);
+      --shadow-md:   0 4px 16px rgba(15,23,42,.08), 0 1px 4px rgba(15,23,42,.04);
+      --shadow-lg:   0 8px 32px rgba(15,23,42,.12);
+      --nav-h:       68px;
+      --transition:  220ms cubic-bezier(.4,0,.2,1);
+    }
+
+    /* ─── RESET ──────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    /* ─── NOISE TEXTURE ──────────────────────────────────────── */
+    .textured {
+      position: relative;
+    }
+    .textured::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+    .textured > * { position: relative; z-index: 1; }
+
+    /* ─── UTILS ──────────────────────────────────────────────── */
+    .container {
+      width: min(1140px, 100% - 2.5rem);
+      margin-inline: auto;
+    }
+    .section-tag {
+      display: inline-block;
+      font-family: 'Inter', sans-serif;
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--sage);
+      background: var(--sage-bg);
+      padding: .3rem .75rem;
+      border-radius: 99px;
+      margin-bottom: 1rem;
+    }
+    .section-tag.on-dark {
+      color: var(--sage-light);
+      background: rgba(107,143,113,.2);
+    }
+
+    /* ─── FADE IN ────────────────────────────────────────────── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .55s ease, transform .55s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: none;
+    }
+    .fade-in-delay-1 { transition-delay: .1s; }
+    .fade-in-delay-2 { transition-delay: .2s; }
+    .fade-in-delay-3 { transition-delay: .3s; }
+
+    /* ─── BUTTONS ────────────────────────────────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      font-family: 'Inter', sans-serif;
+      font-size: .9375rem;
+      font-weight: 600;
+      padding: .8125rem 1.75rem;
+      border-radius: var(--radius-sm);
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: background var(--transition), color var(--transition),
+                  border-color var(--transition), box-shadow var(--transition),
+                  transform var(--transition);
+      white-space: nowrap;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn:active { transform: translateY(0); }
+
+    .btn-primary {
+      background: var(--blue);
+      color: #fff;
+      border-color: var(--blue);
+    }
+    .btn-primary:hover {
+      background: var(--blue-dark);
+      border-color: var(--blue-dark);
+      box-shadow: 0 4px 14px rgba(37,99,235,.35);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--ink);
+      border-color: rgba(15,23,42,.22);
+    }
+    .btn-outline:hover {
+      background: rgba(15,23,42,.04);
+      border-color: rgba(15,23,42,.38);
+    }
+
+    .btn-whatsapp {
+      background: #22C55E;
+      color: #fff;
+      border-color: #22C55E;
+    }
+    .btn-whatsapp:hover {
+      background: #16A34A;
+      border-color: #16A34A;
+      box-shadow: 0 4px 14px rgba(34,197,94,.35);
+    }
+
+    .btn-amber {
+      background: var(--amber);
+      color: #fff;
+      border-color: var(--amber);
+      font-size: 1.0625rem;
+      padding: 1rem 2.25rem;
+      border-radius: var(--radius-md);
+    }
+    .btn-amber:hover {
+      background: var(--amber-dark);
+      border-color: var(--amber-dark);
+      box-shadow: 0 6px 20px rgba(245,158,11,.35);
+    }
+
+    /* ─── NAVIGATION ─────────────────────────────────────────── */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      z-index: 999;
+      transition: background var(--transition), box-shadow var(--transition);
+    }
+    .nav.scrolled {
+      background: rgba(248,250,252,.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 1px 0 rgba(15,23,42,.08);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+    }
+    .nav-logo {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -.01em;
+    }
+    .nav-logo span { color: var(--blue); }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+    .nav-links a {
+      font-size: .9375rem;
+      font-weight: 500;
+      color: var(--muted);
+      transition: color var(--transition);
+    }
+    .nav-links a:hover { color: var(--ink); }
+
+    .nav-cta {
+      font-size: .875rem !important;
+      font-weight: 600 !important;
+      color: var(--blue) !important;
+      background: rgba(37,99,235,.08);
+      padding: .45rem 1rem;
+      border-radius: var(--radius-sm);
+      transition: background var(--transition) !important;
+    }
+    .nav-cta:hover { background: rgba(37,99,235,.15) !important; }
+
+    /* hamburger */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: .4rem;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--ink);
+      border-radius: 2px;
+      transition: transform var(--transition), opacity var(--transition);
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .nav-mobile {
+      display: none;
+      position: fixed;
+      top: var(--nav-h);
+      left: 0; right: 0;
+      background: rgba(248,250,252,.97);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      padding: 1.5rem 1.5rem 2rem;
+      box-shadow: 0 8px 24px rgba(15,23,42,.1);
+      z-index: 998;
+    }
+    .nav-mobile.open { display: flex; flex-direction: column; gap: 1.25rem; }
+    .nav-mobile a {
+      font-size: 1.0625rem;
+      font-weight: 500;
+      color: var(--ink);
+      padding: .5rem 0;
+      border-bottom: 1px solid rgba(15,23,42,.06);
+    }
+    .nav-mobile a:last-child { border-bottom: none; }
+
+    /* ─── HERO ───────────────────────────────────────────────── */
+    .hero {
+      padding-top: calc(var(--nav-h) + 5rem);
+      padding-bottom: 5.5rem;
+      background: linear-gradient(145deg, #EFF6FF 0%, #F8FAFC 45%, #F0F5EB 100%);
+      overflow: hidden;
+      position: relative;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(37,99,235,.07) 0%, transparent 70%);
+      top: -100px;
+      right: -100px;
+      pointer-events: none;
+    }
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 4rem;
+      align-items: center;
+    }
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      font-size: .8125rem;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--blue);
+      background: rgba(37,99,235,.08);
+      padding: .35rem .9rem;
+      border-radius: 99px;
+      margin-bottom: 1.5rem;
+    }
+    .hero-tag::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--blue);
+      flex-shrink: 0;
+    }
+    .hero h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(2.25rem, 4.5vw, 3.375rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -.025em;
+      color: var(--ink);
+      margin-bottom: 1.25rem;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--blue);
+    }
+    .hero-sub {
+      font-size: 1.0625rem;
+      color: var(--muted);
+      max-width: 480px;
+      line-height: 1.7;
+      margin-bottom: 2.25rem;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .875rem;
+      margin-bottom: 3rem;
+    }
+    .hero-stats {
+      display: flex;
+      gap: 2.5rem;
+    }
+    .hero-stat-val {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.625rem;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1;
+      margin-bottom: .2rem;
+    }
+    .hero-stat-label {
+      font-size: .8125rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    /* hero image placeholder */
+    .hero-image-wrap {
+      position: relative;
+    }
+    .hero-image-border {
+      position: absolute;
+      inset: 16px -16px -16px 16px;
+      border-radius: var(--radius-lg);
+      border: 3px solid var(--sage-light);
+      z-index: 0;
+    }
+    .hero-image {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      aspect-ratio: 4/5;
+      background: linear-gradient(135deg, #D1FAE5 0%, #A7F3D0 40%, #6EE7B7 100%);
+      border-radius: var(--radius-lg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+    }
+    .hero-image-icon {
+      font-size: 3.5rem;
+      line-height: 1;
+    }
+    .hero-image-text {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #065F46;
+      letter-spacing: -.01em;
+    }
+    /* floating accent */
+    .hero-badge {
+      position: absolute;
+      bottom: 2.5rem;
+      left: -2rem;
+      z-index: 2;
+      background: var(--card);
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-md);
+      padding: .7rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      font-size: .875rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+    .hero-badge-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #22C55E;
+      flex-shrink: 0;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%,100% { box-shadow: 0 0 0 0 rgba(34,197,94,.4); }
+      50% { box-shadow: 0 0 0 6px rgba(34,197,94,0); }
+    }
+
+    /* ─── ABOUT ──────────────────────────────────────────────── */
+    .about {
+      padding: 6rem 0;
+      background: var(--card);
+    }
+    .about-inner {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 4.5rem;
+      align-items: start;
+    }
+    .about h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(1.75rem, 3vw, 2.375rem);
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -.02em;
+      margin-bottom: 1.75rem;
+      color: var(--ink);
+    }
+    .about-text p {
+      font-size: 1.0125rem;
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 1.25rem;
+    }
+    .about-text p:last-child { margin-bottom: 0; }
+    .about-text strong { color: var(--ink); font-weight: 600; }
+
+    .credentials-card {
+      background: var(--bg);
+      border-radius: var(--radius-md);
+      padding: 2rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(15,23,42,.06);
+    }
+    .credentials-card h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 1.25rem;
+    }
+    .credential-item {
+      display: flex;
+      align-items: flex-start;
+      gap: .75rem;
+      padding: .875rem 0;
+      border-bottom: 1px solid rgba(15,23,42,.06);
+    }
+    .credential-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .credential-check {
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      background: rgba(107,143,113,.15);
+      color: var(--sage);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .7rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: .05rem;
+    }
+    .credential-text {
+      font-size: .9375rem;
+      color: var(--ink);
+      font-weight: 500;
+      line-height: 1.45;
+    }
+
+    /* ─── PROGRAMS ───────────────────────────────────────────── */
+    .programs {
+      padding: 6rem 0;
+      background: var(--bg);
+    }
+    .programs.textured::before { opacity: 1; }
+    .programs-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+    .programs-header h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(1.75rem, 3vw, 2.375rem);
+      font-weight: 700;
+      letter-spacing: -.02em;
+      color: var(--ink);
+    }
+    .program-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .program-card {
+      background: var(--card);
+      border-radius: var(--radius-md);
+      padding: 2rem 1.75rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(15,23,42,.06);
+      border-top: 4px solid var(--sage-light);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .program-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+    .program-card.featured {
+      border-top-color: var(--blue);
+    }
+    .program-icon {
+      font-size: 2.25rem;
+      line-height: 1;
+    }
+    .program-tag {
+      display: inline-block;
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      color: var(--sage);
+      background: var(--sage-bg);
+      padding: .25rem .65rem;
+      border-radius: 99px;
+      width: fit-content;
+    }
+    .program-tag.featured-tag {
+      color: var(--blue);
+      background: rgba(37,99,235,.09);
+    }
+    .program-card h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.1875rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .program-desc {
+      font-size: .9375rem;
+      color: var(--muted);
+      line-height: 1.65;
+      flex: 1;
+    }
+    .program-price {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.1875rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-top: auto;
+    }
+    .program-price span {
+      font-size: .8125rem;
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    .programs-footer {
+      text-align: center;
+      margin-top: 3rem;
+    }
+    .programs-footer p {
+      font-size: 1.0125rem;
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+    }
+
+    /* ─── TESTIMONIALS ───────────────────────────────────────── */
+    .testimonials {
+      padding: 6rem 0;
+      background: var(--dark-bg);
+    }
+    .testimonials-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+    .testimonials-header h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(1.75rem, 3vw, 2.375rem);
+      font-weight: 700;
+      color: var(--dark-text);
+      letter-spacing: -.02em;
+    }
+    .testimonial-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .testimonial-card {
+      background: var(--card);
+      border-radius: var(--radius-md);
+      padding: 1.875rem;
+      box-shadow: 0 4px 24px rgba(0,0,0,.18);
+      display: flex;
+      flex-direction: column;
+      gap: .875rem;
+    }
+    .stars {
+      font-size: 1.05rem;
+      letter-spacing: .1em;
+      color: var(--amber);
+    }
+    .testimonial-text {
+      font-size: .9875rem;
+      color: var(--ink);
+      line-height: 1.7;
+      flex: 1;
+      font-style: italic;
+    }
+    .testimonial-author {
+      font-size: .875rem;
+      font-weight: 600;
+      color: var(--muted);
+      padding-top: .75rem;
+      border-top: 1px solid rgba(15,23,42,.08);
+    }
+    .testimonial-author strong {
+      color: var(--ink);
+      display: block;
+      margin-bottom: .1rem;
+    }
+
+    /* ─── HOW IT WORKS ───────────────────────────────────────── */
+    .how {
+      padding: 6rem 0;
+      background: var(--sage-bg);
+    }
+    .how-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .how-header h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(1.75rem, 3vw, 2.375rem);
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -.02em;
+    }
+    .how-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      position: relative;
+    }
+    .how-steps::before {
+      content: '';
+      position: absolute;
+      top: 2.1rem;
+      left: calc(12.5% + 1.5rem);
+      right: calc(12.5% + 1.5rem);
+      height: 2px;
+      border-top: 2px dashed var(--sage-light);
+      z-index: 0;
+      pointer-events: none;
+    }
+    .step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 0 1rem;
+      position: relative;
+      z-index: 1;
+    }
+    .step-num {
+      font-family: 'Poppins', sans-serif;
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      color: var(--sage);
+      background: var(--card);
+      border: 2px solid var(--sage-light);
+      width: 4.25rem; height: 4.25rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow-sm);
+    }
+    .step-num-inner {
+      font-size: 1.1rem;
+      color: var(--sage);
+    }
+    .step h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.0625rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: .5rem;
+    }
+    .step p {
+      font-size: .9rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .how-footer {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 3.5rem;
+    }
+    .how-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: .6rem;
+      background: var(--card);
+      border: 1px solid rgba(15,23,42,.1);
+      border-radius: 99px;
+      padding: .65rem 1.375rem;
+      font-size: .9375rem;
+      font-weight: 500;
+      color: var(--ink);
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* ─── CONTACT ────────────────────────────────────────────── */
+    .contact {
+      padding: 6.5rem 0;
+      background: var(--cream);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .contact::before {
+      content: '';
+      position: absolute;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      border: 60px solid rgba(245,158,11,.07);
+      bottom: -200px; right: -100px;
+      pointer-events: none;
+    }
+    .contact::after {
+      content: '';
+      position: absolute;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      border: 40px solid rgba(37,99,235,.06);
+      top: -80px; left: -60px;
+      pointer-events: none;
+    }
+    .contact-inner { position: relative; z-index: 1; }
+    .contact h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(2rem, 3.5vw, 2.75rem);
+      font-weight: 800;
+      color: var(--ink);
+      letter-spacing: -.025em;
+      margin-bottom: 1rem;
+    }
+    .contact-sub {
+      font-size: 1.0625rem;
+      color: var(--muted);
+      max-width: 440px;
+      margin: 0 auto 2.25rem;
+      line-height: 1.7;
+    }
+    .contact-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.25rem;
+    }
+    .contact-social {
+      display: flex;
+      align-items: center;
+      gap: .45rem;
+      font-size: .9375rem;
+      font-weight: 500;
+      color: var(--muted);
+      transition: color var(--transition);
+    }
+    .contact-social:hover { color: var(--ink); }
+    .contact-social svg {
+      width: 18px; height: 18px;
+      flex-shrink: 0;
+    }
+
+    /* ─── FOOTER ─────────────────────────────────────────────── */
+    .footer {
+      background: var(--ink);
+      padding: 2rem 0;
+    }
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-copy {
+      font-size: .875rem;
+      color: rgba(255,255,255,.45);
+    }
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+    .footer-links a {
+      font-size: .875rem;
+      font-weight: 500;
+      color: rgba(255,255,255,.55);
+      transition: color var(--transition);
+    }
+    .footer-links a:hover { color: rgba(255,255,255,.9); }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .hero-inner > :nth-child(2) {
+        order: -1;
+        max-width: 340px;
+        margin-inline: auto;
+      }
+      .hero-sub { max-width: 100%; }
+      .hero-actions { justify-content: center; }
+      .hero-stats { justify-content: center; }
+      .hero-badge { left: 50%; transform: translateX(-50%); }
+
+      .about-inner { grid-template-columns: 1fr; }
+
+      .program-cards { grid-template-columns: 1fr; max-width: 440px; margin-inline: auto; }
+
+      .testimonial-cards { grid-template-columns: 1fr; max-width: 480px; margin-inline: auto; }
+
+      .how-steps {
+        grid-template-columns: 1fr 1fr;
+        gap: 2.5rem 1rem;
+      }
+      .how-steps::before { display: none; }
+
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+    }
+
+    @media (max-width: 580px) {
+      .hero { padding-top: calc(var(--nav-h) + 3rem); padding-bottom: 4rem; }
+      .hero-stats { gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
+      .how-steps { grid-template-columns: 1fr; gap: 2.5rem; }
+      .footer-inner { flex-direction: column; text-align: center; }
+      .hero-badge { position: static; transform: none; margin: 1rem auto 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .fade-in { opacity: 1; transform: none; }
+      .btn { transition: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── NAVIGATION ─────────────────────────────────────────────── -->
+<nav class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="#" class="nav-logo">Кира <span>Эльдаровна</span></a>
+
+    <ul class="nav-links">
+      <li><a href="#about">О себе</a></li>
+      <li><a href="#programs">Программы</a></li>
+      <li><a href="#testimonials">Отзывы</a></li>
+      <li><a href="https://wa.me/77052885505" target="_blank" class="nav-cta">Записаться</a></li>
+    </ul>
+
+    <button class="nav-hamburger" id="hamburger" aria-label="Меню">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="nav-mobile" id="mobileMenu">
+  <a href="#about" class="mobile-link">О себе</a>
+  <a href="#programs" class="mobile-link">Программы</a>
+  <a href="#testimonials" class="mobile-link">Отзывы</a>
+  <a href="#contact" class="mobile-link">Контакт</a>
+  <a href="https://wa.me/77052885505" target="_blank" class="mobile-link" style="color:var(--blue);font-weight:700;">Записаться на пробный урок →</a>
+</div>
+
+<!-- ─── HERO ───────────────────────────────────────────────────── -->
+<section class="hero textured" id="home">
+  <div class="container">
+    <div class="hero-inner">
+
+      <!-- text -->
+      <div>
+        <div class="hero-tag fade-in">Репетитор английского языка • Актобе</div>
+        <h1 class="fade-in fade-in-delay-1">Английский,<br/>который <em>открывает</em><br/>двери</h1>
+        <p class="hero-sub fade-in fade-in-delay-2">
+          Индивидуальный подход, реальные результаты. 
+          Онлайн занятия для школьников и взрослых.
+        </p>
+        <div class="hero-actions fade-in fade-in-delay-2">
+          <a href="https://wa.me/77052885505" target="_blank" class="btn btn-primary">
+            Записаться на пробный урок →
+          </a>
+          <a href="#about" class="btn btn-outline">Узнать подробнее</a>
+        </div>
+        <div class="hero-stats fade-in fade-in-delay-3">
+          <div>
+            <div class="hero-stat-val">10+</div>
+            <div class="hero-stat-label">лет опыта</div>
+          </div>
+          <div style="width:1px;background:rgba(15,23,42,.1);margin:0 .25rem;"></div>
+          <div>
+            <div class="hero-stat-val">200+</div>
+            <div class="hero-stat-label">учеников</div>
+          </div>
+          <div style="width:1px;background:rgba(15,23,42,.1);margin:0 .25rem;"></div>
+          <div>
+            <div class="hero-stat-val">IELTS</div>
+            <div class="hero-stat-label">8.0 сертификат</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- image -->
+      <div class="hero-image-wrap fade-in fade-in-delay-1">
+        <div class="hero-image-border"></div>
+        <div class="hero-image">
+          <div class="hero-image-icon">а</div>
+          <div class="hero-image-text">Фото репетитора</div>
+        </div>
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          Принимаю учеников
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── ABOUT ──────────────────────────────────────────────────── -->
+<section class="about textured" id="about">
+  <div class="container">
+    <div class="about-inner">
+      <div class="about-text">
+        <span class="section-tag fade-in">О себе</span>
+        <h2 class="fade-in">...</h2>
+        <p class="fade-in">
+          ... <strong>...</strong> ...
+        </p>
+        <p class="fade-in fade-in-delay-1">
+          ... <strong>...</strong> ...
+        </p>
+        <p class="fade-in fade-in-delay-2">
+          ... <strong>...</strong> ...
+        </p>
+      </div>
+
+      <div class="credentials-card fade-in fade-in-delay-1">
+        <h3>Образование и достижения</h3>
+        <div class="credential-item">
+          <div class="credential-check">✓</div>
+          <div class="credential-text">...</div>
+        </div>
+        <div class="credential-item">
+          <div class="credential-check">✓</div>
+          <div class="credential-text">...</div>
+        </div>
+        <div class="credential-item">
+          <div class="credential-check">✓</div>
+          <div class="credential-text">...</div>
+        </div>
+        <div class="credential-item">
+          <div class="credential-check">✓</div>
+          <div class="credential-text">...</div>
+        </div>
+        <div class="credential-item">
+          <div class="credential-check">✓</div>
+          <div class="credential-text">...</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PROGRAMS ───────────────────────────────────────────────── -->
+<section class="programs textured" id="programs">
+  <div class="container">
+    <div class="programs-header">
+      <span class="section-tag fade-in">Программы</span>
+      <h2 class="fade-in">Выберите свою программу</h2>
+    </div>
+
+    <div class="program-cards">
+
+      <div class="program-card fade-in">
+        <span class="program-tag">Популярный</span>
+        <div class="program-icon">📚</div>
+        <h3>Для школьников</h3>
+        <p class="program-desc">Подготовка к ЕНТ, школьная программа, развитие навыков чтения и письма. Занятия в игровой форме для лёгкого усвоения материала.</p>
+        <div class="program-price">от 5 000 ₸ <span>/ час</span></div>
+      </div>
+
+      <div class="program-card featured fade-in fade-in-delay-1">
+        <span class="program-tag featured-tag">Топ результаты</span>
+        <div class="program-icon">🎯</div>
+        <h3>IELTS / TOEFL</h3>
+        <p class="program-desc">Интенсивная подготовка к международным экзаменам. Стратегии выполнения заданий, практика по всем четырём навыкам, разбор реальных тестов.</p>
+        <div class="program-price">от 7 000 ₸ <span>/ час</span></div>
+      </div>
+
+      <div class="program-card fade-in fade-in-delay-2">
+        <span class="program-tag">Для взрослых</span>
+        <div class="program-icon">💬</div>
+        <h3>Разговорный клуб</h3>
+        <p class="program-desc">Живое общение, преодоление языкового барьера, уверенность в речи. Практика реальных ситуаций: работа, путешествия, переговоры.</p>
+        <div class="program-price">от 3 000 ₸ <span>/ занятие</span></div>
+      </div>
+
+    </div>
+
+    <div class="programs-footer fade-in">
+      <p>Не знаете что выбрать? Напишите мне — подберём вместе</p>
+      <a href="https://wa.me/77052885505?text=Здравствуйте! Помогите выбрать программу обучения" target="_blank" class="btn btn-whatsapp">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Написать в WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TESTIMONIALS ───────────────────────────────────────────── -->
+<section class="testimonials" id="testimonials">
+  <div class="container">
+    <div class="testimonials-header">
+      <span class="section-tag on-dark fade-in">Отзывы</span>
+      <h2 class="fade-in">Что говорят ученики</h2>
+    </div>
+
+    <div class="testimonial-cards">
+
+      <div class="testimonial-card fade-in">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">«Готовилась к IELTS с нуля. За 4 месяца получила 7.5 — смогла поступить в университет в Чехии. Кира Эльдаровна объясняет так, что всё запоминается само.»</p>
+        <div class="testimonial-author">
+          <strong>Дина С.</strong>
+          19 лет, Актобе
+        </div>
+      </div>
+
+      <div class="testimonial-card fade-in fade-in-delay-1">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">«Мой сын занимается уже год. Оценки по английскому выросли с 3 до 5, теперь сам читает книги на английском. Очень довольны, рекомендуем всем!»</p>
+        <div class="testimonial-author">
+          <strong>Гульнара М.</strong>
+          мама ученика, 12 лет
+        </div>
+      </div>
+
+      <div class="testimonial-card fade-in fade-in-delay-2">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">«Брал уроки для работы — нужен был деловой английский. За 3 месяца начал спокойно проводить переговоры с иностранными партнёрами. Результат превзошёл ожидания.»</p>
+        <div class="testimonial-author">
+          <strong>Асет К.</strong>
+          34 года, предприниматель
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── HOW IT WORKS ───────────────────────────────────────────── -->
+<section class="how" id="how">
+  <div class="container">
+    <div class="how-header">
+      <span class="section-tag fade-in">Процесс</span>
+      <h2 class="fade-in">Как проходят занятия</h2>
+    </div>
+
+    <div class="how-steps">
+
+      <div class="step fade-in">
+        <div class="step-num">
+          <span class="step-num-inner">01</span>
+        </div>
+        <h3>Пробный урок</h3>
+        <p>Знакомимся, определяем уровень и цели</p>
+      </div>
+
+      <div class="step fade-in fade-in-delay-1">
+        <div class="step-num">
+          <span class="step-num-inner">02</span>
+        </div>
+        <h3>Составляем план</h3>
+        <p>Индивидуальная программа под вашу конкретную цель</p>
+      </div>
+
+      <div class="step fade-in fade-in-delay-2">
+        <div class="step-num">
+          <span class="step-num-inner">03</span>
+        </div>
+        <h3>Занимаемся</h3>
+        <p>Онлайн в удобное для вас время</p>
+      </div>
+
+      <div class="step fade-in fade-in-delay-3">
+        <div class="step-num">
+          <span class="step-num-inner">04</span>
+        </div>
+        <h3>Видим результат</h3>
+        <p>Прогресс заметен уже после первого месяца работы</p>
+      </div>
+
+    </div>
+
+    <div class="how-footer fade-in">
+      <span class="how-pill">🖥 Онлайн — Zoom / Google Meet</span>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CONTACT ────────────────────────────────────────────────── -->
+<section class="contact textured" id="contact">
+  <div class="contact-inner container">
+    <span class="section-tag fade-in">Контакт</span>
+    <h2 class="fade-in">Готовы начать?</h2>
+    <p class="contact-sub fade-in">
+      Первый пробный урок.<br/>
+      Просто напишите мне в WhatsApp.
+    </p>
+    <div class="contact-actions fade-in">
+      <a href="https://wa.me/77052885505?text=Здравствуйте! Хочу записаться на пробный урок" target="_blank" class="btn btn-amber">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Написать в WhatsApp →
+      </a>
+
+      <a href="https://www.instagram.com/just_english_aktobe/" target="_blank" class="contact-social">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <circle cx="12" cy="12" r="4"/>
+          <circle cx="17.5" cy="6.5" r=".5" fill="currentColor" stroke="none"/>
+        </svg>
+        just_english_aktobe
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─────────────────────────────────────────────────── -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <p class="footer-copy">© 2026 Кира Эльдаровна • Репетитор английского, Актобе</p>
+    <nav class="footer-links">
+      <a href="https://wa.me/77052885505" target="_blank">WhatsApp</a>
+      <a href="https://www.instagram.com/just_english_aktobe/" target="_blank">Instagram</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+  /* ── Nav scroll ── */
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  }, { passive: true });
+
+  /* ── Hamburger ── */
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  hamburger.addEventListener('click', () => {
+    const open = hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+
+  document.querySelectorAll('.mobile-link').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  /* ── Intersection Observer fade-in ── */
+  const fadeEls = document.querySelectorAll('.fade-in');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  fadeEls.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
